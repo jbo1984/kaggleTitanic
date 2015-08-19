@@ -5,7 +5,7 @@ import linearMachine
 
 
 # This creates a pandas dataframe and assigns it to the titanic variable. file_select is to select train.csv
-titanic = pd.read_csv("titanic\\train.csv")
+titanic = pd.read_csv("train.csv")
 
 # print(titanic.head(5))
 # print(titanic.describe())
