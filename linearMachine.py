@@ -1,12 +1,11 @@
-__author__ = 'Justin'
+__author__ = 'Justin Bollinger'
 
 from sklearn.linear_model import LinearRegression
 from sklearn.cross_validation import KFold
-import main
 
-titanic = main.titanic
 
-def regModel():
+
+def regModel(titanic):
     predictors = ["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"]
 
 
@@ -20,3 +19,5 @@ def regModel():
         alg.fit(train_predictors, train_target)
         test_predictions = alg.predict(titanic[predictors].iloc[test,:])
         predictions.append(test_predictions)
+
+    return predictions
