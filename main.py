@@ -3,7 +3,7 @@ import pandas as pd
 import pylab as p
 import numpy as np
 import linearMachine, dataAlter
-
+import csv
 
 
 
@@ -16,7 +16,7 @@ pred = np.concatenate(pred, 0)
 
 pred[pred > .5] = 1
 pred[pred <= .5] = 0
-#print(pred)
+print(pred)
 
 count = 0
 accuracy = 0
@@ -27,5 +27,11 @@ while count < len(titanic["Survived"]):
     count += 1
 
 accuracy = accuracy / float(len(titanic))
-print(accuracy)
+# submission = pd.DataFrame({
+#         "PassengerId": titanic["PassengerId"],
+#         "Survived": pred
+#     })
+submission = pd.DataFrame
+submission.to_csv("submission.csv")
+
 

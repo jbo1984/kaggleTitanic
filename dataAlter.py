@@ -19,4 +19,6 @@ def dstaMani(titanic):
     titanic.loc[titanic["Embarked"] == 'S', "Embarked"] = 0
     titanic.loc[titanic["Embarked"] == 'C', "Embarked"] = 1
     titanic.loc[titanic["Embarked"] == 'Q', "Embarked"] = 2
+
+    titanic["Fare"] = titanic["Fare"].fillna(titanic["Fare"].median)
     return titanic
