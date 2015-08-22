@@ -1,6 +1,6 @@
 __author__ = 'Justin Bollinger'
 
-def dstaMani(titanic):
+def dataMani(titanic):
 
     # print(titanic.head(5))
     # print(titanic.describe())
