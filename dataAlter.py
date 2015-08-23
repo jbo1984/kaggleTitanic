@@ -1,8 +1,11 @@
 __author__ = 'Justin Bollinger'
 import pandas as pd
-import re
+import re, operator
+# A dictionary mapping family name to id
+family_id_mapping = {}
 
 def get_title(name):
+
     #Reg exp to search for name titles ex Mr. Mrs.
     title_search = re.search(' ([A-Za-z]+)\.', name)
     #Extract title if it exists
@@ -10,13 +13,26 @@ def get_title(name):
         return title_search.group(1)
     return ""
 
-def dataMani(titanic):
+def get_family_id(titanic):
+    # Find the last name by splitting on a comma
+    last_name = titanic["Name"].split(",")[0]
+    # Create the family id
+    family_id = "{0}{1}".format(last_name, titanic["FamilySize"])
+    # Look up the id in the mapping
+    if family_id not in family_id_mapping:
+        if len(family_id_mapping) == 0:
+            current_id = 1
+        else:
+            # Get the maximum id from the mapping and add one to it if no id
+            current_id = (max(family_id_mapping.items(), key=operator.itemgetter(1))[1] + 1)
+        family_id_mapping[family_id] = current_id
+    return family_id_mapping[family_id]
 
+def dataMani(titanic):
     # print(titanic.head(5))
     # print(titanic.describe())
     #Makes blank ages the median age.
     titanic["Age"] = titanic["Age"].fillna(titanic["Age"].median())
-
 
     #print(titanic["Sex"].unique())
     #converts sex's to 0 and 1
@@ -47,5 +63,11 @@ def dataMani(titanic):
         titles[titles == k] = v
     #print(pd.value_counts(titles))
     titanic["Title"] = titles
+
+    #gets family ids
+    family_ids = titanic.apply(get_family_id, axis=1)
+    family_ids[titanic["FamilySize"] < 3] = -1
+    titanic["FamilyId"] = family_ids
+    #print(pd.value_counts(family_ids))
 
     return titanic

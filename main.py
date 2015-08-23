@@ -1,6 +1,5 @@
-__author__ = 'Justin'
-import pandas as pd
-import numpy as np
+__author__ = 'Justin Bollinger'
+import pandas as pd, numpy as np
 import linearMachine, dataAlter, randomTree
 
 
@@ -35,4 +34,6 @@ print accuracy
 # submission.to_csv("submission.csv")
 
 tree = randomTree.tree(titanic)
-print(titanic)
+# print(titanic)
+# titanic = pd.DataFrame(titanic)
+# titanic.to_csv("submission.csv")
