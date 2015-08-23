@@ -1,6 +1,5 @@
 __author__ = 'Justin'
 import pandas as pd
-import pylab as p
 import numpy as np
 import linearMachine, dataAlter, randomTree
 
@@ -36,5 +35,4 @@ print accuracy
 # submission.to_csv("submission.csv")
 
 tree = randomTree.tree(titanic)
-#print tree
 print(titanic)
