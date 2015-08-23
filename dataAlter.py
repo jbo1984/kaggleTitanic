@@ -21,4 +21,9 @@ def dataMani(titanic):
     titanic.loc[titanic["Embarked"] == 'Q', "Embarked"] = 2
 
     titanic["Fare"] = titanic["Fare"].fillna(titanic["Fare"].median)
+
+    titanic["FamilySize"] = titanic["SibSp"] + titanic["Parch"]
+    titanic["NameLength"] = titanic["Name"].apply(lambda x: len(x))
+
+
     return titanic
