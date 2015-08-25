@@ -1,6 +1,6 @@
 __author__ = 'Justin Bollinger'
 import pandas as pd, numpy as np
-import linearMachine, dataAlter, randomTree
+import linearMachine, dataAlter, randomTree, bestSelector
 
 
 
@@ -37,3 +37,6 @@ tree = randomTree.tree(titanic)
 # print(titanic)
 # titanic = pd.DataFrame(titanic)
 # titanic.to_csv("submission.csv")
+
+print(bestSelector.bSelect(titanic))
+print(randomTree.tree(titanic))
